@@ -1,986 +1,2255 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T-Link Asia - 全球网络连接解决方案</title>
-    <meta name="description" content="T-Link Asia 专注于为企业提供 SD-WAN、DIA、IP Transit、DCI 和 DWDM 网络解决方案，满足不断发展的业务需求。">
-    <meta name="keywords" content="SD-WAN, DIA, IP Transit, DCI, DWDM, network solutions, enterprise network, data center interconnect, international leased line">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="T-Link Asia - 全球网络连接解决方案">
-    <meta property="og:description" content="为企业提供安全、稳定、高速的网络连接服务">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.tlinkasia.com/zh.html">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2B6CB0;
-            --primary-dark: #215387;
-            --secondary-color: #36ec7a;
-            --dark-bg: #1A202C;
-            --dark-secondary: #2D3748;
-            --text-color: #4A5568;
-            --light-bg: #F7FAFC;
+            --primary: #0d2147;
+            --primary-light: #1a4080;
+            --accent: #7ec828;
+            --accent-hover: #6ab01f;
+            --dark: #0a0a0a;
+            --gray-50: #f8fafb;
+            --gray-100: #f1f4f8;
+            --gray-200: #e2e7ef;
+            --gray-300: #c8d0dc;
+            --gray-600: #5a6578;
+            --gray-800: #1e2533;
             --white: #ffffff;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
             line-height: 1.6;
-            color: var(--text-color);
             overflow-x: hidden;
         }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(26, 32, 44, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        
+
+        /* ============ HEADER ============ */
         .top-bar {
-            background: #3b3b3b;
-            padding: 5px 0;
+            background: var(--primary);
+            padding: 8px 0;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
         }
-        
-        .container {
-            max-width: 1290px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .top-bar-content {
+
+        .top-bar .container {
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
         }
-        
-        .social-links a {
-            color: var(--white);
-            margin-left: 15px;
+
+        .top-bar a {
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            font-size: 14px;
+            transition: color 0.2s;
         }
-        
-        .main-header {
-            padding: 15px 0;
+
+        .top-bar a:hover, .top-bar a.active {
+            color: var(--accent);
         }
-        
-        .header-content {
+
+        .top-bar .divider {
+            color: rgba(255,255,255,0.3);
+        }
+
+        header {
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 0 var(--gray-200);
+        }
+
+        .header-main {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
+            gap: 12px;
             text-decoration: none;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
         }
-        
-        .logo svg {
-            height: 40px;
-            width: auto;
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(126,194,40,0.2) 50%, transparent 60%);
+            animation: logoShine 4s ease-in-out infinite;
+        }
+
+        @keyframes logoShine {
+            0%, 100% { transform: translateX(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) rotate(45deg); }
+        }
+
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 4px;
         }
-        
+
         nav a {
-            color: var(--white);
             text-decoration: none;
+            color: var(--gray-600);
             font-size: 14px;
-            text-transform: capitalize;
-            letter-spacing: 2px;
-            transition: color 0.3s;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
         }
-        
-        nav a:hover {
-            color: var(--secondary-color);
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            background: var(--gray-100);
         }
-        
-        .header-btn {
-            padding: 10px 25px;
-            border: 2px solid var(--white);
+
+        .btn-primary {
+            background: var(--accent);
             color: var(--white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
             text-decoration: none;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
         }
-        
-        .header-btn:hover {
-            background: var(--white);
-            color: var(--dark-bg);
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(126,194,40,0.35);
         }
-        
-        /* Hero Section */
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============ HERO ============ */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(12, 52, 131, 0.9) 0%, rgba(20, 39, 109, 0.9) 100%),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%230f1729" width="1920" height="1080"/><g fill="%231a2745" opacity="0.4"><circle cx="200" cy="200" r="100"/><circle cx="800" cy="400" r="150"/><circle cx="1400" cy="300" r="120"/><circle cx="1600" cy="800" r="180"/></g></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(160deg, var(--primary) 0%, #061a35 50%, #040f22 100%);
+            padding: 100px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(126,194,40,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(126,194,40,0.04) 0%, transparent 50%);
+        }
+
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(126,194,40,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(126,194,40,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(126,194,40,0.12);
+            border: 1px solid rgba(126,194,40,0.25);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(126,194,40,0.2); }
+            50% { box-shadow: 0 0 0 8px rgba(126,194,40,0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 12px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 36px;
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 64px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 700px;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-light {
+            background: var(--gray-50);
+        }
+
+        .section-dark {
+            background: var(--dark);
+        }
+
+        .section-primary {
+            background: linear-gradient(180deg, var(--primary) 0%, #061a35 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .section-title.light {
+            color: var(--white);
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .section-desc.light {
+            color: rgba(255,255,255,0.55);
+        }
+
+        /* ============ SERVICES GRID ============ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 36px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #4caf50);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(13,33,71,0.12);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding-top: 120px;
-        }
-        
-        .hero-content {
-            max-width: 900px;
-            padding: 0 20px;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 900;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 26px;
             margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .service-features li {
+            font-size: 13px;
+            color: var(--gray-600);
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .service-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s;
+        }
+
+        .service-link:hover {
+            gap: 10px;
+            color: var(--accent);
+        }
+
+        /* ============ DETAIL SECTIONS ============ */
+        .detail-section {
+            padding: 80px 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .detail-grid.reverse {
+            direction: rtl;
+        }
+
+        .detail-grid.reverse > * {
+            direction: ltr;
+        }
+
+        .detail-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .detail-title {
+            font-size: clamp(28px, 3.5vw, 38px);
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
             line-height: 1.2;
         }
-        
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            color: var(--secondary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+
+        .detail-desc {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.8;
             margin-bottom: 20px;
         }
-        
-        .hero-description {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 40px;
-            max-width: 700px;
+
+        .detail-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .detail-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            background: var(--gray-50);
+            border-radius: 10px;
+        }
+
+        .detail-feature-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .detail-feature h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 2px;
+        }
+
+        .detail-feature p {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        .detail-visual {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a4080 100%);
+            border-radius: 20px;
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(126,194,40,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(126,194,40,0.04) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .detail-visual-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .detail-visual h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .detail-visual p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        .detail-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .detail-metric {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .detail-metric-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .detail-metric-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+
+        /* ============ STATS BANNER ============ */
+        .stats-banner {
+            padding: 80px 0;
+            background: var(--dark);
+            position: relative;
+        }
+
+        .stats-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(126,194,40,0.03) 0%, transparent 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: clamp(40px, 5vw, 56px);
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.45);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============ ABOUT ============ */
+        .about-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-text p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .about-highlight {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: var(--gray-50);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .about-highlight span {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .about-map {
+            background: var(--gray-100);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .map-visual {
+            background: linear-gradient(135deg, var(--primary) 0%, #061a35 100%);
+            border-radius: 16px;
+            padding: 48px;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .map-nodes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            max-width: 400px;
+        }
+
+        .map-node {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .map-node.hub {
+            background: var(--accent);
+            color: white;
+        }
+
+        .map-node.regional {
+            background: rgba(126,194,40,0.2);
+            color: var(--accent);
+            border: 1px solid rgba(126,194,40,0.3);
+        }
+
+        .map-node.city {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .map-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .map-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* ============ USE CASES ============ */
+        .usecases-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .usecase-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .usecase-card:hover {
+            background: rgba(126,194,40,0.08);
+            border-color: rgba(126,194,40,0.3);
+            transform: translateY(-4px);
+        }
+
+        .usecase-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .usecase-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .usecase-card p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+        }
+
+        /* ============ PROCESS ============ */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+            opacity: 0.15;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            width: 72px;
+            height: 72px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+            position: relative;
+            z-index: 2;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 20px rgba(13,33,71,0.15);
+        }
+
+        .process-step h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .process-step p {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 10px 40px rgba(13,33,71,0.08);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-stars {
+            color: #f59e0b;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        /* ============ CTA ============ */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #061a35 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(126,194,40,0.08) 0%, transparent 60%);
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-section p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 36px;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 18px 50px;
-            background: transparent;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 3px solid var(--white);
-            border-radius: 15px;
-            transition: all 0.3s;
-        }
-        
-        .cta-button:hover {
-            background: var(--white);
-            color: var(--dark-bg);
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: var(--light-bg);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--dark-bg);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: 10px;
+
+        .cta-buttons {
             display: flex;
-            align-items: center;
+            gap: 16px;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 28px;
+            flex-wrap: wrap;
         }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--dark-bg);
-            margin-bottom: 15px;
-        }
-        
-        .service-card p {
-            color: var(--text-color);
-            line-height: 1.8;
-        }
-        
-        /* Features Section */
-        .features {
+
+        /* ============ CONTACT ============ */
+        .contact-section {
             padding: 100px 0;
-            background: var(--dark-bg);
-            color: var(--white);
+            background: var(--primary);
         }
-        
-        .features-grid {
+
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
         }
-        
-        .feature-item {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .feature-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-        
-        .feature-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        
-        .feature-item p {
-            color: rgba(255,255,255,0.7);
-        }
-        
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--dark-bg);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-        
-        .about-text p {
-            color: var(--text-color);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        
-        .about-image {
-            background: var(--white);
-            min-height: 400px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background: linear-gradient(135deg, rgba(12, 52, 131, 0.95) 0%, rgba(20, 39, 109, 0.95) 100%),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 600"><rect fill="%230f1729" width="1920" height="600"/></svg>');
-            background-size: cover;
-            color: var(--white);
-        }
-        
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
+
         .contact-info h2 {
-            font-size: 2rem;
-            font-weight: 900;
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .contact-info > p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-item-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(126,194,40,0.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .contact-item-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .contact-item-value {
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(126,194,40,0.06);
+        }
+
+        .form-group select option {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(126,194,40,0.3);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: #040d1a;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            color: var(--white);
+        }
+
+        .footer-brand h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--white);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 20px;
         }
-        
-        .contact-info p {
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .contact-details {
+
+        .footer-col ul {
             list-style: none;
         }
-        
-        .contact-details li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .contact-form {
-            background: rgba(255,255,255,0.1);
-            padding: 40px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255,255,255,0.9);
-            font-family: inherit;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #7bba43;
-            color: var(--white);
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background: #6baf35;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark-bg);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-section h4 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section li {
+
+        .footer-col li {
             margin-bottom: 10px;
         }
-        
-        .footer-section a {
-            color: rgba(255,255,255,0.7);
+
+        .footer-col a {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
-        
-        .footer-section a:hover {
-            color: var(--secondary-color);
+
+        .footer-col a:hover {
+            color: var(--accent);
         }
-        
+
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            text-align: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
         }
-        
-        /* Responsive */
+
+        .footer-bottom a {
+            color: rgba(255,255,255,0.3);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--accent);
+        }
+
+        /* ============ MOBILE ============ */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
+            .top-bar { display: none; }
+            nav ul { display: none; }
+            .mobile-toggle { display: block; }
             
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
+            .hero { padding: 60px 0 80px; }
+            .hero-stats { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .hero-actions { flex-direction: column; align-items: flex-start; }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+            .services-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .stat-value { font-size: 36px; }
             
-            .hero h1 {
-                font-size: 2rem;
-            }
+            .detail-grid,
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .detail-grid.reverse { direction: ltr; }
+            
+            .usecases-grid { grid-template-columns: 1fr 1fr; }
+            .process-grid { grid-template-columns: 1fr 1fr; }
+            .process-grid::before { display: none; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+            
+            .form-row { grid-template-columns: 1fr; }
+            .section { padding: 60px 0; }
+        }
+
+        @media (max-width: 480px) {
+            .usecases-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+            .detail-features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="top-bar">
-            <div class="container">
-                <div class="top-bar-content">
-                    <div class="social-links">
-                        <a href="zh.html" style="font-weight: 600; color: var(--secondary-color);">中文</a>
-                        <span style="color: rgba(255,255,255,0.5);">|</span>
-                        <a href="index.html">English</a>
-                        <span style="color: rgba(255,255,255,0.5); margin: 0 10px;">|</span>
-                        <a href="#contact">联系我们</a>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="container">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <a href="index.html">English</a>
+            <span style="color:rgba(255,255,255,0.3);">|</span>
+            <a href="zh.html" class="active">中文</a>
+            <span style="color:rgba(255,255,255,0.3);">|</span>
+            <a href="#contact">联系我们</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <div class="header-main">
+            <a href="#home" class="logo">
+                <div class="logo-icon">T</div>
+                T-Link Asia
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="btn-primary">
+                获取报价
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button class="mobile-toggle" aria-label="菜单">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-grid-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">🌐 企业级网络解决方案</div>
+            <h1>全球网络<br><span>连接</span><br>解决方案</h1>
+            <p class="hero-sub">我们专注于为企业提供 SD-WAN、DIA、IP Transit、DCI 和 DWDM 网络解决方案，满足不断发展的业务需求。将云带入您的网络。</p>
+            <div class="hero-actions">
+                <a href="#services" class="btn-primary">
+                    探索我们的服务
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#contact" class="btn-outline">
+                    与专家交流
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">99.9%</div>
+                    <div class="hero-stat-label">SLA 保障</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">24/7</div>
+                    <div class="hero-stat-label">技术支持</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">50+</div>
+                    <div class="hero-stat-label">全球 PoPs</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">&lt;10ms</div>
+                    <div class="hero-stat-label">超低延迟</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section class="section section-light" id="services">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">核心业务</div>
+            <h2 class="section-title">全面的企业网络解决方案</h2>
+            <p class="section-desc">为企业设计的可扩展、安全、高性能的网络服务，覆盖亚太地区及更广阔市场。</p>
+        </div>
+        <div class="services-grid">
+            <!-- SD-WAN -->
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>SD-WAN</h3>
+                <p>软件定义广域网解决方案，提供灵活、安全、高效的企业网络连接，降低带宽成本，提升应用性能。智能流量调度与零信任安全架构让您的网络更敏捷。</p>
+                <ul class="service-features">
+                    <li>智能流量路由与优化</li>
+                    <li>零信任安全架构</li>
+                    <li>云端集中管理平台</li>
+                    <li>多链路聚合（4G/5G/MPLS）</li>
+                </ul>
+                <a href="#sdwan-detail" class="service-link">了解更多 →</a>
+            </div>
+            <!-- DIA -->
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>DIA 专线互联网接入</h3>
+                <p>专用互联网接入服务，提供独享、对称的高速互联网连接，保证带宽专属，确保业务连续性和网络稳定性。</p>
+                <ul class="service-features">
+                    <li>对称带宽保障</li>
+                    <li>SLA 99.9%+ 可用率</li>
+                    <li>静态或 BGP IP 分配</li>
+                    <li>优质 PE 路由接入</li>
+                </ul>
+                <a href="#dia-detail" class="service-link">了解更多 →</a>
+            </div>
+            <!-- IP Transit -->
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>IP Transit</h3>
+                <p>通过我们的 Tier-1 主干网络连接全球互联网，提供低延迟、高可靠性的 IP Transit 服务，满足运营商、云服务商和大型企业的需求。</p>
+                <ul class="service-features">
+                    <li>Tier-1 主干网络</li>
+                    <li>完整 BGP 路由优化</li>
+                    <li>100G+ 端口容量</li>
+                    <li>多区域冗余备份</li>
+                </ul>
+                <a href="#iptransit-detail" class="service-link">了解更多 →</a>
+            </div>
+            <!-- DCI -->
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>DCI 数据中心互联</h3>
+                <p>数据中心互联解决方案，实现多数据中心之间的高速、安全连接，支持混合云部署和灾备架构。</p>
+                <ul class="service-features">
+                    <li>亚毫秒级延迟连接</li>
+                    <li>二层/三层灵活选项</li>
+                    <li>跨数据中心集群</li>
+                    <li>云直连接入</li>
+                </ul>
+                <a href="#dci-detail" class="service-link">了解更多 →</a>
+            </div>
+            <!-- DWDM -->
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>DWDM 波长服务</h3>
+                <p>密集波分复用技术最大化光纤带宽利用，为超大规模数据中心和企业提供超大容量传输服务。</p>
+                <ul class="service-features">
+                    <li>每对光纤最多 96 波</li>
+                    <li>100G/200G/400G 波长容量</li>
+                    <li>超低信号衰减</li>
+                    <li>远距离站点互联</li>
+                </ul>
+                <a href="#dwdm-detail" class="service-link">了解更多 →</a>
+            </div>
+            <!-- SASE -->
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>SASE 安全访问服务边缘</h3>
+                <p>安全访问服务边缘，将网络与安全功能融合到统一的云服务中，以零信任原则保护分布式工作环境。</p>
+                <ul class="service-features">
+                    <li>零信任网络访问（ZTNA）</li>
+                    <li>安全 Web 网关（SWG）</li>
+                    <li>云访问安全代理（CASB）</li>
+                    <li>SDP 私有访问</li>
+                </ul>
+                <a href="#sase-detail" class="service-link">了解更多 →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ DETAIL SECTIONS ============ -->
+
+<!-- SD-WAN DETAIL -->
+<section class="detail-section" id="sdwan-detail">
+    <div class="container">
+        <div class="detail-grid">
+            <div>
+                <div class="detail-tag">🌐 SD-WAN 软件定义广域网</div>
+                <h2 class="detail-title">SD-WAN 软件定义广域网</h2>
+                <p class="detail-desc">T-Link Asia 的 SD-WAN 解决方案彻底改变了企业广域网的管理方式。通过将网络硬件与控制平面解耦，我们为您的所有分支站点提供无与伦比的灵活性、可视性和性能优化。无论您运营 5 个还是 500 个办公室，我们的 SD-WAN 平台都能确保每位用户获得一致的高质量应用体验。</p>
+                <p class="detail-desc">我们的解决方案可与现有 MPLS 基础设施无缝集成，让您在逐步过渡的同时保护既有投资。智能叠加网络根据应用需求、实时状况和业务策略，自动选择最佳路径——MPLS、宽带互联网、LTE 或 5G。</p>
+                <div class="detail-features-grid">
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">📊</div>
+                        <div>
+                            <h4>应用感知路由</h4>
+                            <p>深度包检测识别 5,000+ 应用程序，智能调度流量</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔐</div>
+                        <div>
+                            <h4>内置安全防护</h4>
+                            <p>集成防火墙、入侵防御和加密，保护每条流量</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">☁️</div>
+                        <div>
+                            <h4>云就绪架构</h4>
+                            <p>直连 SaaS 和 IaaS 提供商，降低访问延迟</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">📱</div>
+                        <div>
+                            <h4>零接触部署</h4>
+                            <p>新站点数小时上线，无需数周等待</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-visual">
+                <div class="detail-visual-content">
+                    <h3>SD-WAN 架构</h3>
+                    <p>任意传输之上的智能叠加网络</p>
+                    <div class="detail-metrics">
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">70%</div>
+                            <div class="detail-metric-label">带宽成本降低</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">3倍</div>
+                            <div class="detail-metric-label">应用性能提升</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">&lt;4小时</div>
+                            <div class="detail-metric-label">新站点部署</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">99.9%</div>
+                            <div class="detail-metric-label">SLA 保障</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="main-header">
-            <div class="container">
-                <div class="header-content">
-                    <a href="#" class="logo">
-                        <svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- T-Link Logo Design -->
-                            <!-- Outer Circle - Global Network -->
-                            <circle cx="20" cy="20" r="18" stroke="#36ec7a" stroke-width="2" fill="none"/>
-                            <!-- Inner T - Connection Hub -->
-                            <path d="M12 14 L28 14 L28 18 L22 18 L22 28 L18 28 L18 18 L12 18 Z" fill="#36ec7a"/>
-                            <!-- Connection Nodes -->
-                            <circle cx="20" cy="8" r="2" fill="#36ec7a"/>
-                            <circle cx="20" cy="32" r="2" fill="#36ec7a"/>
-                            <circle cx="8" cy="20" r="2" fill="#36ec7a"/>
-                            <circle cx="32" cy="20" r="2" fill="#36ec7a"/>
-                            <!-- Connection Lines -->
-                            <line x1="20" y1="10" x2="20" y2="14" stroke="#36ec7a" stroke-width="1"/>
-                            <line x1="20" y1="28" x2="20" y2="30" stroke="#36ec7a" stroke-width="1"/>
-                            <line x1="10" y1="20" x2="12" y2="20" stroke="#36ec7a" stroke-width="1"/>
-                            <line x1="28" y1="20" x2="30" y2="20" stroke="#36ec7a" stroke-width="1"/>
-                            <!-- Text T-Link -->
-                            <text x="45" y="18" font-family="Jost, sans-serif" font-size="16" font-weight="700" fill="#ffffff">T-Link</text>
-                            <!-- Text Asia -->
-                            <text x="45" y="32" font-family="Jost, sans-serif" font-size="12" font-weight="400" fill="#36ec7a" letter-spacing="3">ASIA</text>
-                        </svg>
-                    </a>
-                    <nav>
-                        <ul>
-                            <li><a href="#home">首页</a></li>
-                            <li><a href="#services">服务</a></li>
-                            <li><a href="#about">关于我们</a></li>
-                            <li><a href="#contact">联系我们</a></li>
-                        </ul>
-                    </nav>
-                    <a href="#contact" class="header-btn">获取报价</a>
+    </div>
+</section>
+
+<!-- DIA DETAIL -->
+<section class="detail-section section-light" id="dia-detail">
+    <div class="container">
+        <div class="detail-grid reverse">
+            <div>
+                <div class="detail-tag">🔗 专用互联网接入</div>
+                <h2 class="detail-title">DIA 专线互联网接入</h2>
+                <p class="detail-desc">T-Link Asia 的专线互联网接入服务为企业级用户提供有保障的带宽、对称的上传下载速率以及 SLA 承诺的可用率。与共享宽带不同，您的连接专属于您的组织，确保在高峰时段和关键业务运营期间的性能一致性。</p>
+                <p class="detail-desc">我们在香港、新加坡、东京、首尔、悉尼、上海等主要商业区提供 DIA 服务。混合光纤/电缆基础设施提供从 100Mbps 到 10Gbps 的多种速率选择，支持 BGP 对等和冗余连接。每条 DIA 线路均包含主动监控、24/7 技术支持和快速故障排除。</p>
+                <div class="detail-features-grid">
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">⚡</div>
+                        <div>
+                            <h4>保障吞吐量</h4>
+                            <p>100Mbps 至 10Gbps 对称带宽，无超额认购</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🏆</div>
+                        <div>
+                            <h4>企业级 SLA</h4>
+                            <p>99.9%+ 可用率保障，NOC 响应及赔偿政策</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🌍</div>
+                        <div>
+                            <h4>全球覆盖</h4>
+                            <p>亚太 20+ 城市可开通，本地环路支持</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔄</div>
+                        <div>
+                            <h4>冗余连接</h4>
+                            <p>双运营商选项 + 自动故障切换，保障业务连续性</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-visual">
+                <div class="detail-visual-content">
+                    <h3>DIA 网络拓扑</h3>
+                    <p>直连企业互联网接入</p>
+                    <div class="detail-metrics">
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">10Gbps</div>
+                            <div class="detail-metric-label">最高可用带宽</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">&lt;5ms</div>
+                            <div class="detail-metric-label">抖动性能</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">4小时</div>
+                            <div class="detail-metric-label">平均修复时间</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">99.9%</div>
+                            <div class="detail-metric-label">可用率 SLA</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <p class="hero-subtitle">全球网络连接解决方案</p>
-            <h1>T-Link Asia</h1>
-            <p class="hero-description">我们专注于为企业提供 SD-WAN、DIA、IP Transit、DCI 和 DWDM 网络解决方案，满足不断发展的业务需求。将云带入您的网络。</p>
-            <a href="#services" class="cta-button">探索我们的服务</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>我们的服务</h2>
-                <p>为企业提供全面的网络解决方案，助力数字化转型</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>SD-WAN</h3>
-                    <p>软件定义广域网解决方案，提供灵活、安全、高效的企业网络连接，降低带宽成本，提升应用性能。</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔗</div>
-                    <h3>DIA - Dedicated Internet Access</h3>
-                    <p>Dedicated Internet Access providing exclusive, symmetrical high-speed internet connectivity, ensuring business continuity and network stability.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>IP Transit</h3>
-                    <p>Global IP Transit services through our backbone network connecting to the global internet, providing low-latency and high-reliability network experience.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>DCI - Data Center Interconnect</h3>
-                    <p>Data Center Interconnect solutions enabling high-speed, secure connections between multiple data centers, supporting hybrid cloud deployments.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>DWDM - Dense Wavelength Division Multiplexing</h3>
-                    <p>DWDM technology maximizing fiber bandwidth utilization, providing ultra-high capacity transmission for hyperscale data centers.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🛡️</div>
-                    <h3>SASE - Secure Access Service Edge</h3>
-                    <p>Secure Access Service Edge converging network and security functions into a unified cloud service, protecting distributed work environments.</p>
+<!-- IP TRANSIT DETAIL -->
+<section class="detail-section" id="iptransit-detail">
+    <div class="container">
+        <div class="detail-grid">
+            <div>
+                <div class="detail-tag">🚀 IP Transit</div>
+                <h2 class="detail-title">全球 IP Transit 服务</h2>
+                <p class="detail-desc">T-Link Asia 运营覆盖亚洲、北美和欧洲的 Tier-1 主干网络，拥有遍布全球的直接对等关系。我们的 IP Transit 服务为运营商、云服务商、内容网络和追求优质路由质量的企业客户提供低延迟、高容量的互联网连接。</p>
+                <p class="detail-desc">每个 IP Transit 端口都由我们广泛的 IX（互联网交换中心）连接和路由优化引擎支撑，确保您的流量以最优路径到达目的地。端口范围从 1G 到 100G 及以上，支撑从成长型创业公司到超大规模云基础设施的所有业务。</p>
+                <div class="detail-features-grid">
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🌏</div>
+                        <div>
+                            <h4>Tier-1 主干网</h4>
+                            <p>完整 BGP 路由表，50 万+ 前缀，地理优化传播</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔀</div>
+                        <div>
+                            <h4>多路径路由</h4>
+                            <p>智能路由选择降低全球延迟和丢包率</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">📈</div>
+                        <div>
+                            <h4>弹性带宽</h4>
+                            <p>1G 到 100G+ 端口，支持按需突发</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🛡️</div>
+                        <div>
+                            <h4>DDoS 防护</h4>
+                            <p>上游清洗中心在攻击流量到达前清除恶意请求</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2 style="color: white;">为什么选择 T-Link</h2>
-                <p style="color: rgba(255,255,255,0.8);">Powering growth in Asia-Pacific and emerging markets</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-number">99.9%</div>
-                    <h4>SLA Guarantee</h4>
-                    <p>Network availability commitment</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-number">24/7</div>
-                    <h4>Technical Support</h4>
-                    <p>Round-the-clock professional service</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-number">50+</div>
-                    <h4>Global PoPs</h4>
-                    <p>Covering major cities worldwide</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-number">10ms</div>
-                    <h4>Low Latency</h4>
-                    <p>Regional network latency</p>
+            <div class="detail-visual">
+                <div class="detail-visual-content">
+                    <h3>全球 IP 主干网</h3>
+                    <p>跨大陆的 Tier-1 路由网络</p>
+                    <div class="detail-metrics">
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">1Tbps+</div>
+                            <div class="detail-metric-label">主干总容量</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">50万+</div>
+                            <div class="detail-metric-label">BGP 前缀数</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">200+</div>
+                            <div class="detail-metric-label">对等连接数</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">&lt;5ms</div>
+                            <div class="detail-metric-label">区域延迟</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>关于 T-Link Asia</h2>
-                    <p>T-Link Asia Limited is a leading service provider specializing in enterprise network solutions, headquartered in Hong Kong. We are committed to providing secure, stable, and high-speed network connectivity services, helping enterprises succeed in digital transformation.</p>
-                    <p>Our global backbone network covers the Asia-Pacific region and emerging markets, providing comprehensive network services including SD-WAN, DIA, IP Transit, DCI, and DWDM for enterprise customers. Whether financial institutions, multinational corporations, or cloud service providers, we can provide tailored network solutions.</p>
-                    <p>With a professional technical team and quality customer service, T-Link Asia has become a trusted network partner for numerous enterprises.</p>
+<!-- DCI DETAIL -->
+<section class="detail-section section-light" id="dci-detail">
+    <div class="container">
+        <div class="detail-grid reverse">
+            <div>
+                <div class="detail-tag">🏢 数据中心互联</div>
+                <h2 class="detail-title">DCI 数据中心互联解决方案</h2>
+                <p class="detail-desc">我们的 DCI 解决方案以高速、低延迟的专用电路连接您的数据中心、托管设施和云直连接入点。无论您需要构建混合云架构、实现跨数据中心复制，还是整合跨区域的 IT 基础设施，T-Link Asia 都能提供您所需的专用带宽。</p>
+                <p class="detail-desc">我们提供二层（VLAN/VXLAN）和三层（IP VPN）互联选项，以及直连 AWS Direct Connect、Azure ExpressRoute、Google Cloud Interconnect 和阿里云高速通道的主要云平台连接。所有 DCI 电路均通过自有光纤基础设施交付，实现最大可靠性和安全性。</p>
+                <div class="detail-features-grid">
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">⚡</div>
+                        <div>
+                            <h4>超低延迟</h4>
+                            <p>同城亚毫秒级，城际个位数毫秒级延迟保障</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">☁️</div>
+                        <div>
+                            <h4>云直连接入</h4>
+                            <p>直连 AWS、Azure、GCP、阿里云私有网络</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔒</div>
+                        <div>
+                            <h4>私有安全</h4>
+                            <p>100% 私有光纤，流量不暴露于公网</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔄</div>
+                        <div>
+                            <h4>灾备恢复</h4>
+                            <p>同步复制和故障切换连接，保障业务连续性</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <svg viewBox="0 0 800 400" width="100%" height="100%" style="max-width: 100%; max-height: 100%;">
-                        <!-- World Map Background -->
-                        <rect width="800" height="400" fill="#f8fafc"/>
-                        
-                        <!-- World Map Grid Lines -->
-                        <g stroke="#e2e8f0" stroke-width="1" opacity="0.5">
-                            <!-- Horizontal lines -->
-                            <line x1="0" y1="50" x2="800" y2="50"/>
-                            <line x1="0" y1="100" x2="800" y2="100"/>
-                            <line x1="0" y1="150" x2="800" y2="150"/>
-                            <line x1="0" y1="200" x2="800" y2="200"/>
-                            <line x1="0" y1="250" x2="800" y2="250"/>
-                            <line x1="0" y1="300" x2="800" y2="300"/>
-                            <line x1="0" y1="350" x2="800" y2="350"/>
-                            <!-- Vertical lines -->
-                            <line x1="100" y1="0" x2="100" y2="400"/>
-                            <line x1="200" y1="0" x2="200" y2="400"/>
-                            <line x1="300" y1="0" x2="300" y2="400"/>
-                            <line x1="400" y1="0" x2="400" y2="400"/>
-                            <line x1="500" y1="0" x2="500" y2="400"/>
-                            <line x1="600" y1="0" x2="600" y2="400"/>
-                            <line x1="700" y1="0" x2="700" y2="400"/>
-                        </g>
-                        
-                        <!-- Detailed World Map Continents -->
-                        <!-- North America -->
-                        <path d="M80,60 
-                                 Q120,50 160,55 200,70 220,100 210,130 180,140 
-                                 Q150,145 130,135 110,120 90,100 70,80 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Canada/Alaska detail -->
-                        <path d="M60,50 Q100,40 140,45 180,55 200,70 180,75 140,70 100,65 60,60 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- South America -->
-                        <path d="M140,160 
-                                 Q170,155 190,165 200,190 195,220 185,260 
-                                 Q175,290 165,310 155,305 145,280 135,240 
-                                 Q130,200 135,175 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- Europe -->
-                        <path d="M360,70 
-                                 Q390,65 420,70 440,85 445,105 435,120 
-                                 Q415,125 395,120 375,115 360,100 355,85 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- UK -->
-                        <path d="M345,85 Q355,80 360,90 355,100 345,95 Z" fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Scandinavia -->
-                        <path d="M380,55 Q400,50 415,55 410,70 395,68 385,65 Z" fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- Africa -->
-                        <path d="M380,140 
-                                 Q420,135 450,145 460,180 455,220 445,260 
-                                 Q435,295 420,315 405,310 395,280 385,240 
-                                 Q375,200 375,165 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Madagascar -->
-                        <path d="M465,260 Q470,270 468,285 462,280 460,270 Z" fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- Asia (Detailed) -->
-                        <path d="M480,80 
-                                 Q520,60 570,55 620,60 660,75 690,95 700,120 
-                                 Q695,150 670,165 630,170 590,165 550,155 
-                                 Q510,145 485,125 475,100 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Russia/Siberia -->
-                        <path d="M480,60 Q540,45 600,45 660,50 700,70 720,90 700,95 650,85 580,80 520,75 480,70 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- India -->
-                        <path d="M540,160 Q560,155 575,165 580,190 575,215 565,230 555,225 550,200 545,175 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Southeast Asia -->
-                        <path d="M580,170 Q600,165 615,175 620,195 615,210 605,205 595,190 585,180 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Japan -->
-                        <path d="M680,110 Q690,105 695,115 692,125 685,130 680,125 Z" fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- Australia -->
-                        <path d="M660,260 
-                                 Q700,255 730,265 745,285 740,310 725,325 
-                                 Q700,330 675,325 655,315 650,295 655,275 Z" 
-                              fill="#cbd5e0" opacity="0.6"/>
-                        <!-- Tasmania -->
-                        <path d="M690,335 Q700,332 705,340 700,348 690,345 Z" fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- New Zealand -->
-                        <path d="M750,290 Q760,285 765,295 760,305 752,302 Z" fill="#cbd5e0" opacity="0.6"/>
-                        <path d="M755,310 Q765,305 770,315 765,325 757,322 Z" fill="#cbd5e0" opacity="0.6"/>
-                        
-                        <!-- Connection Lines - Hierarchical Architecture -->
-                        <defs>
-                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#36ec7a;stop-opacity:0.8" />
-                                <stop offset="100%" style="stop-color:#36ec7a;stop-opacity:0.2" />
-                            </linearGradient>
-                            <linearGradient id="regionalLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#2B6CB0;stop-opacity:0.6" />
-                                <stop offset="100%" style="stop-color:#2B6CB0;stop-opacity:0.2" />
-                            </linearGradient>
-                        </defs>
-                        
-                        <!-- Hong Kong Center Point (Global Hub) -->
-                        <circle cx="620" cy="145" r="10" fill="#2B6CB0" stroke="#fff" stroke-width="2"/>
-                        <circle cx="620" cy="145" r="15" fill="none" stroke="#36ec7a" stroke-width="2" opacity="0.6">
-                            <animate attributeName="r" values="15;25;15" dur="2s" repeatCount="indefinite"/>
-                            <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
-                        </circle>
-                        
-                        <!-- Regional Hub Connections from Hong Kong -->
-                        <!-- Tokyo - Asia Pacific Hub -->
-                        <line x1="620" y1="145" x2="650" y2="120" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- Singapore - Southeast Asia Hub -->
-                        <line x1="620" y1="145" x2="600" y2="190" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- Sydney - Oceania Hub -->
-                        <line x1="620" y1="145" x2="620" y2="220" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- London - Europe Hub -->
-                        <line x1="620" y1="145" x2="400" y2="100" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- New York - North America Hub -->
-                        <line x1="620" y1="145" x2="150" y2="100" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- Sao Paulo - South America Hub -->
-                        <line x1="620" y1="145" x2="170" y2="160" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- Dubai - Middle East Hub -->
-                        <line x1="620" y1="145" x2="510" y2="160" stroke="url(#lineGradient)" stroke-width="3"/>
-                        <!-- Mumbai - South Asia Hub -->
-                        <line x1="620" y1="145" x2="530" y2="140" stroke="url(#lineGradient)" stroke-width="3"/>
-                        
-                        <!-- Regional Hub Nodes (Larger circles) -->
-                        <circle cx="650" cy="120" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- Tokyo Hub -->
-                        <circle cx="600" cy="190" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- Singapore Hub -->
-                        <circle cx="620" cy="220" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- Sydney Hub -->
-                        <circle cx="400" cy="100" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- London Hub -->
-                        <circle cx="150" cy="100" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- New York Hub -->
-                        <circle cx="170" cy="160" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- Sao Paulo Hub -->
-                        <circle cx="510" cy="160" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- Dubai Hub -->
-                        <circle cx="530" cy="140" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1.5"/> <!-- Mumbai Hub -->
-                        
-                        <!-- Regional Connections - Tokyo Hub to Asia Cities -->
-                        <line x1="650" y1="120" x2="640" y2="110" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Seoul -->
-                        <line x1="650" y1="120" x2="700" y2="140" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Osaka -->
-                        <line x1="650" y1="120" x2="660" y2="100" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Sapporo -->
-                        <line x1="650" y1="120" x2="590" y2="80" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Vladivostok -->
-                        
-                        <!-- Regional Connections - Singapore Hub to SE Asia -->
-                        <line x1="600" y1="190" x2="580" y2="200" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Jakarta -->
-                        <line x1="600" y1="190" x2="550" y2="150" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Bangkok -->
-                        <line x1="600" y1="190" x2="640" y2="180" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Manila -->
-                        <line x1="600" y1="190" x2="630" y2="160" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Taipei -->
-                        
-                        <!-- Regional Connections - Sydney Hub to Oceania -->
-                        <line x1="620" y1="220" x2="650" y2="240" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Melbourne -->
-                        <line x1="620" y1="220" x2="700" y2="280" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Auckland -->
-                        <line x1="620" y1="220" x2="680" y2="260" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Wellington -->
-                        <line x1="620" y1="220" x2="720" y2="200" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Fiji -->
-                        
-                        <!-- Regional Connections - London Hub to Europe -->
-                        <line x1="400" y1="100" x2="380" y2="90" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Amsterdam -->
-                        <line x1="400" y1="100" x2="390" y2="85" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Frankfurt -->
-                        <line x1="400" y1="100" x2="410" y2="95" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Paris -->
-                        <line x1="400" y1="100" x2="420" y2="110" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Madrid -->
-                        <line x1="400" y1="100" x2="430" y2="85" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Berlin -->
-                        <line x1="400" y1="100" x2="440" y2="80" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Warsaw -->
-                        <line x1="400" y1="100" x2="460" y2="75" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Moscow -->
-                        <line x1="400" y1="100" x2="450" y2="100" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Rome -->
-                        <line x1="400" y1="100" x2="470" y2="90" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Istanbul -->
-                        <line x1="400" y1="100" x2="350" y2="95" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Dublin -->
-                        <line x1="400" y1="100" x2="370" y2="70" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Stockholm -->
-                        
-                        <!-- Regional Connections - New York Hub to North America -->
-                        <line x1="150" y1="100" x2="180" y2="90" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Toronto -->
-                        <line x1="150" y1="100" x2="140" y2="120" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Chicago -->
-                        <line x1="150" y1="100" x2="160" y2="140" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Miami -->
-                        <line x1="150" y1="100" x2="120" y2="110" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Los Angeles -->
-                        <line x1="150" y1="100" x2="100" y2="130" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- San Francisco -->
-                        <line x1="150" y1="100" x2="200" y2="110" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Vancouver -->
-                        <line x1="150" y1="100" x2="190" y2="130" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Seattle -->
-                        <line x1="150" y1="100" x2="170" y2="115" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Dallas -->
-                        
-                        <!-- Regional Connections - Sao Paulo Hub to South America -->
-                        <line x1="170" y1="160" x2="150" y2="180" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Buenos Aires -->
-                        <line x1="170" y1="160" x2="130" y2="150" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Mexico City -->
-                        
-                        <!-- Regional Connections - Mumbai Hub to South Asia -->
-                        <line x1="530" y1="140" x2="540" y2="125" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Delhi -->
-                        <line x1="530" y1="140" x2="560" y2="90" stroke="url(#regionalLineGradient)" stroke-width="1.5"/> <!-- Ulaanbaatar -->
-                        
-                        <!-- China Direct Connections -->
-                        <line x1="620" y1="145" x2="600" y2="100" stroke="url(#lineGradient)" stroke-width="2"/> <!-- Beijing -->
-                        <line x1="620" y1="145" x2="610" y2="115" stroke="url(#lineGradient)" stroke-width="2"/> <!-- Shanghai -->
-                        
-                        <!-- Pacific Islands Direct -->
-                        <line x1="620" y1="145" x2="750" y2="160" stroke="url(#lineGradient)" stroke-width="2"/> <!-- Guam -->
-                        <line x1="620" y1="145" x2="780" y2="140" stroke="url(#lineGradient)" stroke-width="2"/> <!-- Hawaii -->
-                        
-                        <!-- Regional City Nodes (Smaller circles) -->
-                        <!-- Asia Pacific -->
-                        <circle cx="640" cy="110" r="3" fill="#36ec7a"/> <!-- Seoul -->
-                        <circle cx="600" cy="100" r="3" fill="#36ec7a"/> <!-- Beijing -->
-                        <circle cx="610" cy="115" r="3" fill="#36ec7a"/> <!-- Shanghai -->
-                        <circle cx="630" cy="160" r="3" fill="#36ec7a"/> <!-- Taipei -->
-                        <circle cx="640" cy="180" r="3" fill="#36ec7a"/> <!-- Manila -->
-                        <circle cx="580" cy="200" r="3" fill="#36ec7a"/> <!-- Jakarta -->
-                        <circle cx="650" cy="240" r="3" fill="#36ec7a"/> <!-- Melbourne -->
-                        <circle cx="550" cy="150" r="3" fill="#36ec7a"/> <!-- Bangkok -->
-                        <circle cx="700" cy="140" r="3" fill="#36ec7a"/> <!-- Osaka -->
-                        <circle cx="660" cy="100" r="3" fill="#36ec7a"/> <!-- Sapporo -->
-                        <circle cx="590" cy="80" r="3" fill="#36ec7a"/> <!-- Vladivostok -->
-                        <circle cx="560" cy="90" r="3" fill="#36ec7a"/> <!-- Ulaanbaatar -->
-                        <circle cx="540" cy="125" r="3" fill="#36ec7a"/> <!-- Delhi -->
-                        
-                        <!-- Europe -->
-                        <circle cx="380" cy="90" r="3" fill="#36ec7a"/> <!-- Amsterdam -->
-                        <circle cx="390" cy="85" r="3" fill="#36ec7a"/> <!-- Frankfurt -->
-                        <circle cx="410" cy="95" r="3" fill="#36ec7a"/> <!-- Paris -->
-                        <circle cx="420" cy="110" r="3" fill="#36ec7a"/> <!-- Madrid -->
-                        <circle cx="430" cy="85" r="3" fill="#36ec7a"/> <!-- Berlin -->
-                        <circle cx="440" cy="80" r="3" fill="#36ec7a"/> <!-- Warsaw -->
-                        <circle cx="460" cy="75" r="3" fill="#36ec7a"/> <!-- Moscow -->
-                        <circle cx="450" cy="100" r="3" fill="#36ec7a"/> <!-- Rome -->
-                        <circle cx="470" cy="90" r="3" fill="#36ec7a"/> <!-- Istanbul -->
-                        <circle cx="350" cy="95" r="3" fill="#36ec7a"/> <!-- Dublin -->
-                        <circle cx="370" cy="70" r="3" fill="#36ec7a"/> <!-- Stockholm -->
-                        
-                        <!-- Americas -->
-                        <circle cx="180" cy="90" r="3" fill="#36ec7a"/> <!-- Toronto -->
-                        <circle cx="140" cy="120" r="3" fill="#36ec7a"/> <!-- Chicago -->
-                        <circle cx="160" cy="140" r="3" fill="#36ec7a"/> <!-- Miami -->
-                        <circle cx="120" cy="110" r="3" fill="#36ec7a"/> <!-- Los Angeles -->
-                        <circle cx="100" cy="130" r="3" fill="#36ec7a"/> <!-- San Francisco -->
-                        <circle cx="200" cy="110" r="3" fill="#36ec7a"/> <!-- Vancouver -->
-                        <circle cx="190" cy="130" r="3" fill="#36ec7a"/> <!-- Seattle -->
-                        <circle cx="170" cy="115" r="3" fill="#36ec7a"/> <!-- Dallas -->
-                        <circle cx="150" cy="180" r="3" fill="#36ec7a"/> <!-- Buenos Aires -->
-                        <circle cx="130" cy="150" r="3" fill="#36ec7a"/> <!-- Mexico City -->
-                        
-                        <!-- Oceania -->
-                        <circle cx="700" cy="280" r="3" fill="#36ec7a"/> <!-- Auckland -->
-                        <circle cx="680" cy="260" r="3" fill="#36ec7a"/> <!-- Wellington -->
-                        <circle cx="720" cy="200" r="3" fill="#36ec7a"/> <!-- Fiji -->
-                        <circle cx="750" cy="160" r="3" fill="#36ec7a"/> <!-- Guam -->
-                        <circle cx="780" cy="140" r="3" fill="#36ec7a"/> <!-- Hawaii -->
-                        
-                        <!-- Legend -->
-                        <g transform="translate(20, 360)">
-                            <circle cx="0" cy="0" r="6" fill="#2B6CB0" stroke="#fff" stroke-width="1"/>
-                            <text x="12" y="4" font-size="11" fill="#4A5568">Hong Kong (Global Hub)</text>
-                            
-                            <circle cx="145" cy="0" r="5" fill="#2B6CB0" stroke="#fff" stroke-width="1"/>
-                            <text x="155" y="4" font-size="11" fill="#4A5568">Regional Hub</text>
-                            
-                            <circle cx="245" cy="0" r="3" fill="#36ec7a"/>
-                            <text x="253" y="4" font-size="11" fill="#4A5568">City Node</text>
-                            
-                            <line x1="320" y1="0" x2="350" y2="0" stroke="#36ec7a" stroke-width="2"/>
-                            <text x="355" y="4" font-size="11" fill="#4A5568">Global Link</text>
-                            
-                            <line x1="420" y1="0" x2="450" y2="0" stroke="#2B6CB0" stroke-width="1.5" opacity="0.6"/>
-                            <text x="455" y="4" font-size="11" fill="#4A5568">Regional Link</text>
-                        </g>
-                        
-                        <!-- Title -->
-                        <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="600" fill="#1A202C">全球网络覆盖 - 50+ PoPs Worldwide</text>
-                    </svg>
+            </div>
+            <div class="detail-visual">
+                <div class="detail-visual-content">
+                    <h3>DCI 网络拓扑</h3>
+                    <p>多站点私有连接</p>
+                    <div class="detail-metrics">
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">&lt;1ms</div>
+                            <div class="detail-metric-label">同城延迟</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">100G</div>
+                            <div class="detail-metric-label">单电路最大容量</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">15+</div>
+                            <div class="detail-metric-label">可用云直连接入点</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">99.99%</div>
+                            <div class="detail-metric-label">DCI 可用率 SLA</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>联系我们</h2>
-                    <p>Whether you have any network requirements or questions, our professional team is ready to serve you.</p>
-                    <ul class="contact-details">
-                        <li>📍 Suite C, 6/F, Shun Shing Square, 50 Stanley Street, Central, Hong Kong</li>
-                        <li>✉️ info@tlinkasia.com</li>
-                        <li>🌐 www.tlinkasia.com</li>
-                    </ul>
+<!-- DWDM DETAIL -->
+<section class="detail-section" id="dwdm-detail">
+    <div class="container">
+        <div class="detail-grid">
+            <div>
+                <div class="detail-tag">⚡ DWDM 波分复用</div>
+                <h2 class="detail-title">DWDM 密集波分复用</h2>
+                <p class="detail-desc">T-Link Asia 的 DWDM 波长服务释放您光纤基础设施的全部潜力。通过在一对光纤上复用多个光波长，我们的 DWDM 解决方案实现了大规模容量提升——每对光纤最高 96 波，每波 100G、200G 或 400G。这使其成为超大规模数据中心、研究网络、金融交易公司和内容分发网络的理想选择。</p>
+                <p class="detail-desc">我们的 DWDM 网络在配备 ROADM（可重构光分插复用器）节点的托管密集光纤覆盖范围内运行，可远程配置和重新分配波长而无需物理干预。每项波长服务都包含综合监控、光学性能管理和自动保护切换。</p>
+                <div class="detail-features-grid">
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">💡</div>
+                        <div>
+                            <h4>大容量波长</h4>
+                            <p>每波 100G/200G/400G，每对光纤最多 96 波</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔧</div>
+                        <div>
+                            <h4>ROADM 远程控制</h4>
+                            <p>无需到场即可远程添加/删除波长</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🛡️</div>
+                        <div>
+                            <h4>光层保护</h4>
+                            <p>1+1 和 1:1 保护方案，故障切换 &lt;50ms</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">📡</div>
+                        <div>
+                            <h4>长距离传输</h4>
+                            <p>最远 400km 无需中继放大，可按需延展</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-form">
-                    <form>
+            </div>
+            <div class="detail-visual">
+                <div class="detail-visual-content">
+                    <h3>DWDM 波长架构</h3>
+                    <p>最大化光纤容量利用率</p>
+                    <div class="detail-metrics">
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">38Tbps+</div>
+                            <div class="detail-metric-label">单纤总容量</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">96</div>
+                            <div class="detail-metric-label">每纤波长数</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">400G</div>
+                            <div class="detail-metric-label">单波最高速率</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">&lt;50ms</div>
+                            <div class="detail-metric-label">保护切换时间</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SASE DETAIL -->
+<section class="detail-section section-light" id="sase-detail">
+    <div class="container">
+        <div class="detail-grid reverse">
+            <div>
+                <div class="detail-tag">🛡️ SASE 安全访问服务边缘</div>
+                <h2 class="detail-title">SASE 安全访问服务边缘</h2>
+                <p class="detail-desc">T-Link Asia 的 SASE 平台将网络连接和网络安全功能融合到统一的云交付服务中。随着企业采用混合工作模式和多云架构，传统的边界安全已不再足够。我们的 SASE 解决方案实施零信任原则，确保每位用户和设备无论身在何处都经过身份验证和授权检查。</p>
+                <p class="detail-desc">该平台将 SD-WAN、零信任网络访问（ZTNA）、安全 Web 网关（SWG）、云访问安全代理（CASB）和防火墙即服务（FWaaS）整合到单一全球服务网络中。这消除了对多种单点产品的需求，降低运营复杂性，并在用户工作的任何地方提供一致的安全策略执行。</p>
+                <div class="detail-features-grid">
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🔑</div>
+                        <div>
+                            <h4>零信任网络访问</h4>
+                            <p>每次连接均验证，用户和应用遵循最小权限原则</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">🌐</div>
+                        <div>
+                            <h4>安全 Web 网关</h4>
+                            <p>URL 过滤、DNS 安全和 SSL 检查确保安全浏览</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">📱</div>
+                        <div>
+                            <h4>CASB 集成</h4>
+                            <p>SaaS 应用程序的影子 IT 发现和策略执行</p>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <div class="detail-feature-icon">📊</div>
+                        <div>
+                            <h4>统一可视化</h4>
+                            <p>单一仪表板管理网络性能和整体安全态势</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-visual">
+                <div class="detail-visual-content">
+                    <h3>SASE 安全架构</h3>
+                    <p>云原生安全融合</p>
+                    <div class="detail-metrics">
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">100%</div>
+                            <div class="detail-metric-label">流量检测覆盖</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">200+</div>
+                            <div class="detail-metric-label">云安全接入点</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">&lt;10ms</div>
+                            <div class="detail-metric-label">安全处理延迟</div>
+                        </div>
+                        <div class="detail-metric">
+                            <div class="detail-metric-value">99.99%</div>
+                            <div class="detail-metric-label">服务可用率</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS BANNER -->
+<section class="stats-banner" id="why-us">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">SLA 保障</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">技术支持</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">50+</div>
+                <div class="stat-label">全球 PoPs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">&lt;10ms</div>
+                <div class="stat-label">超低延迟</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section section-light" id="process">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">我们的流程</div>
+            <h2 class="section-title">从咨询到部署</h2>
+            <p class="section-desc">简化的四步流程，以最小的影响让您的企业网络启动运行。</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <h3>需求咨询</h3>
+                <p>评估您现有的基础设施，了解业务需求，设计定制化网络架构。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <h3>方案提案</h3>
+                <p>为您提供包含服务选项、定价、SLA 承诺和实施时间表的详细方案。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <h3>部署实施</h3>
+                <p>我们的工程团队负责全站点安装、配置和测试，零接触部署。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <h3>托管服务</h3>
+                <p>24/7 监控、主动支持以及 SLA 性能报告，确保持续卓越运行。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">客户案例</div>
+            <h2 class="section-title">深受行业领先企业信赖</h2>
+            <p class="section-desc">了解亚太地区企业如何依赖 T-Link Asia 提供关键任务网络连接。</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"T-Link Asia 的 SD-WAN 解决方案彻底改变了我们区域分支网络。带宽成本降低了 60%，应用性能提升了一倍。部署过程也非常顺利。"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">陈</div>
+                    <div>
+                        <div class="testimonial-name">陈志明</div>
+                        <div class="testimonial-role">首席技术官，区域物流集团</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"他们的 DCI 服务以前后数据中心亚毫秒级延迟互联，直连 AWS 云上线路径对我们的迁移策略来说是一个重大突破。"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">林</div>
+                    <div>
+                        <div class="testimonial-name">林思涵</div>
+                        <div class="testimonial-role">基础设施副总裁，金融科技公司</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"24/7 支持团队非常出色。我们从未经历过长时间停机。他们的主动监控在问题扩大之前就发现了。"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">库</div>
+                    <div>
+                        <div class="testimonial-name">Raj Kumar</div>
+                        <div class="testimonial-role">网络总监，全球零售连锁</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-tag">关于我们</div>
+                <h2>T-Link Asia Limited</h2>
+                <p>T-Link Asia Limited 是一家领先的企业网络解决方案服务提供商，总部位于香港。我们致力于提供安全、稳定、高速的网络连接服务，帮助企业在数字化转型中取得成功。</p>
+                <p>我们的全球主干网络覆盖亚太地区和新兴市场，为企业客户提供包括 SD-WAN、DIA、IP Transit、DCI 和 DWDM 在内的全面网络服务。无论是金融机构、跨国企业还是云服务提供商，我们都能提供量身定制的网络解决方案。</p>
+                <p>凭借专业的技术团队和优质的客户服务，T-Link Asia 已成长为众多企业信赖的网络合作伙伴。</p>
+                <div class="about-highlights">
+                    <div class="about-highlight">
+                        <span>🏢</span>
+                        香港总部
+                    </div>
+                    <div class="about-highlight">
+                        <span>🌏</span>
+                        亚太区域聚焦
+                    </div>
+                    <div class="about-highlight">
+                        <span>🔧</span>
+                        24/7 NOC 运维中心
+                    </div>
+                    <div class="about-highlight">
+                        <span>📋</span>
+                        ISO 27001 认证
+                    </div>
+                </div>
+            </div>
+            <div class="about-map">
+                <div class="map-visual">
+                    <div>
+                        <h3 style="font-size: 20px; font-weight: 700; color: white; margin-bottom: 8px;">全球网络覆盖</h3>
+                        <p style="color: rgba(255,255,255,0.5); font-size: 13px;">50+ PoPs 覆盖全球主要城市</p>
+                    </div>
+                    <div class="map-nodes">
+                        <div class="map-node hub">香港（核心枢纽）</div>
+                        <div class="map-node hub">新加坡（核心枢纽）</div>
+                        <div class="map-node hub">东京（核心枢纽）</div>
+                        <div class="map-node regional">首尔</div>
+                        <div class="map-node regional">悉尼</div>
+                        <div class="map-node regional">上海</div>
+                        <div class="map-node regional">深圳</div>
+                        <div class="map-node regional">台北</div>
+                        <div class="map-node regional">雅加达</div>
+                        <div class="map-node regional">孟买</div>
+                        <div class="map-node regional">迪拜</div>
+                        <div class="map-node regional">法兰克福</div>
+                        <div class="map-node city">洛杉矶</div>
+                        <div class="map-node city">伦敦</div>
+                        <div class="map-node city">阿姆斯特丹</div>
+                    </div>
+                    <div class="map-legend">
+                        <div class="map-legend-item">
+                            <div class="map-legend-dot" style="background: var(--accent);"></div>
+                            全球枢纽
+                        </div>
+                        <div class="map-legend-item">
+                            <div class="map-legend-dot" style="background: rgba(126,194,40,0.5);"></div>
+                            区域枢纽
+                        </div>
+                        <div class="map-legend-item">
+                            <div class="map-legend-dot" style="background: rgba(255,255,255,0.3);"></div>
+                            城市节点
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+    <div class="container">
+        <h2>准备好升级您的网络了吗？</h2>
+        <p>获取专为您的业务设计的定制化解决方案。我们的专家随时准备帮助您构建更快、更安全、更可靠的网络。</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn-primary">
+                免费咨询
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#services" class="btn-outline">探索服务</a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>联系我们</h2>
+                <p>无论您有任何网络需求或疑问，我们的专业团队随时为您服务。</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div>
+                            <div class="contact-item-label">地址</div>
+                            <div class="contact-item-value">香港中环士丹利街50号<br>顺成广场6楼C室</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <div>
+                            <div class="contact-item-label">邮箱</div>
+                            <div class="contact-item-value">info@tlinkasia.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🌐</div>
+                        <div>
+                            <div class="contact-item-label">网站</div>
+                            <div class="contact-item-value">www.tlinkasia.com</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" placeholder="Your name">
+                            <label>您的姓名 *</label>
+                            <input type="text" name="name" placeholder="张三" required>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" placeholder="Your email">
+                            <label>电子邮箱 *</label>
+                            <input type="email" name="email" placeholder="zhangsan@company.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>公司名称</label>
+                            <input type="text" name="company" placeholder="您的公司名称">
                         </div>
                         <div class="form-group">
-                            <label>Company</label>
-                            <input type="text" placeholder="Your company">
+                            <label>感兴趣的服务</label>
+                            <select name="service">
+                                <option value="">请选择服务...</option>
+                                <option value="sdwan">SD-WAN 软件定义广域网</option>
+                                <option value="dia">DIA 专线互联网接入</option>
+                                <option value="iptransit">IP Transit</option>
+                                <option value="dci">DCI 数据中心互联</option>
+                                <option value="dwdm">DWDM 波长服务</option>
+                                <option value="sase">SASE 安全访问服务边缘</option>
+                                <option value="other">其他 / 通用咨询</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea rows="4" placeholder="Describe your requirements"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Inquiry</button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label>您的需求 *</label>
+                        <textarea name="message" placeholder="请描述您的网络需求、现有基础设施以及面临的挑战..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        发送询价
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>T-Link Asia</h4>
-                    <p>Global network connectivity solutions provider, empowering enterprise digital transformation.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>快速链接</h4>
-                    <ul>
-                        <li><a href="#services">我们的服务</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">News</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#">SD-WAN</a></li>
-                        <li><a href="#">DIA Leased Line</a></li>
-                        <li><a href="#">IP Transit</a></li>
-                        <li><a href="#">DCI Interconnect</a></li>
-                    </ul>
-                </div>
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>T-Link Asia</h3>
+                <p>全球网络连接解决方案提供商，助力企业在亚太及更广泛地区实现数字化转型。</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 T-Link Asia Limited. 版权所有. | www.tlinkasia.com</p>
+            <div class="footer-col">
+                <h4>服务</h4>
+                <ul>
+                    <li><a href="#sdwan-detail">SD-WAN</a></li>
+                    <li><a href="#dia-detail">DIA 专线接入</a></li>
+                    <li><a href="#iptransit-detail">IP Transit</a></li>
+                    <li><a href="#dci-detail">DCI 数据中心互联</a></li>
+                    <li><a href="#dwdm-detail">DWDM 波长服务</a></li>
+                    <li><a href="#sase-detail">SASE</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>公司</h4>
+                <ul>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#why-us">选择 T-Link</a></li>
+                    <li><a href="#process">服务流程</a></li>
+                    <li><a href="#testimonials">客户案例</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li><a href="mailto:info@tlinkasia.com">info@tlinkasia.com</a></li>
+
+                    <li><a href="#contact">获取报价</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <span>© 2026 T-Link Asia Limited. 保留所有权利。</span>
+            <div>
+                <a href="index.html">English</a> | <a href="zh.html">中文</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Active nav highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 80;
+            if (scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('.form-submit');
+        const original = btn.innerHTML;
+        btn.innerHTML = '发送中... ⏳';
+        btn.disabled = true;
+
+        const name = this.querySelector('[name="name"]').value;
+        const email = this.querySelector('[name="email"]').value;
+        const company = this.querySelector('[name="company"]').value;
+        const service = this.querySelector('[name="service"]').value;
+        const message = this.querySelector('[name="message"]').value;
+
+        const subject = encodeURIComponent('T-Link Asia 网站询价' + (service ? ' - ' + service : ''));
+        const body = encodeURIComponent(
+            '姓名: ' + name + '\n' +
+            '邮箱: ' + email + '\n' +
+            '公司: ' + company + '\n' +
+            '感兴趣的服务: ' + (service || '未指定') + '\n\n' +
+            '留言:\n' + message
+        );
+
+        window.location.href = 'mailto:info@tlinkasia.com?subject=' + subject + '&body=' + body;
+
+        btn.innerHTML = '✓ 正在打开邮箱...';
+        btn.style.background = '#22c55e';
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.style.background = '';
+            btn.disabled = false;
+            this.reset();
+        }, 2000);
+    });
+</script>
+
 </body>
 </html>
